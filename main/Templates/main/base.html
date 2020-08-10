@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta id="view" name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="X-UA-Compatible" content="IE-9"/>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+<meta id="view" name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- Top Navigation Menu -->
+<div class="topnav">
+  <a href="/" class="active"> xBear Blogs </a>
+
+  <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
+  <!-- Navigation links (hidden by default) -->
+  <div id="myLinks">
+    <a  href="/"onload="onload_pages">Home</a>
+    <li class="dropdown">
+    <a href="javascript:void(0)">Categories</a>
+    <div class="dropdown-categories">
+      <a href="/aboutus"onload="onload_pages">About us</a>
+      <a href="#">Example 2</a>
+      <a href="#">Example 3</a>
+      <a href="#">Example 4</a>
+      <a href="#">Example 5</a>
+    </div>
+  </li>
+    <hr id="community">
+    <a href="/contact" onload="onload_pages">Contact</a>
+    <a href="/community"onload="onload_pages">Community</a>
+    <hr id="account-line">
+    <a href="/create"onload="onload_pages">Create an Account</a>
+    <a href="/signin"onload="onload_pages">Sign in</a>
+    <a href="/logout"onload="onload_pages">Sign out of {{request.user}}</a>
+    <hr id="admin-line">
+    <a href="/admin"onload="onload_pages">Enable Admin-Site</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // On Load Script
+  function onload_pages(){
+    alert("If this takes longer than a minute refresh your page.")
+    document.write("Loading...")
+    console.warn("SYSTEM: Activated OnLoad Page")
+  }
+</script>
+
+<script type="text/javascript">
+  /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+function myFunction() {
+  var links = document.getElementById("myLinks");
+  if (links.style.display === "block") {
+    links.style.display = "none";
+  } else {
+    links.style.display = "block";
+  }
+}
+
+function alerts(){
+  var entry = alert('Welcome to xBear Blogs. This website is used for Community and Staff blogs. In order to view the blogs you need to create an account. So just view the Navigation Bar and click the Create an Account button. ')
+}
+
+alerts()
+</script>
+
+<style type="text/css">
+/* Making sure the Navigation Bar  fits on the screen properly */
+
+*{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+#admin-line{
+  color: white;
+  background: #fff;
+}
+
+#account-line{
+  color: white;
+  background: #fff;
+}
+
+#community{
+  color: white;
+  background: #fff;
+}
+
+.dropdown-categories {
+  display: none;
+  position: absolute;
+  background-color: #222;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-categories a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-categories a:hover {background-color: #878080;}
+
+.dropdown:hover .dropdown-categories {
+  display: block;
+}
+
+body{
+  font-family: sans-serif;
+  background-color: #fff;
+  transition: 0.6s ease;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+/* Style the navigation menu */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+  transition: 0.6s ease;
+}
+
+/* Hide the links inside the navigation menu (except for logo/home) */
+.topnav #myLinks {
+  display: none;
+  transition: 0.6s ease;
+}
+
+/* Style navigation menu links */
+.topnav a {
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  display: block;
+  transition: 0.6 ease;
+}
+
+/* Style the hamburger menu */
+.topnav a.icon {
+  background: black;
+  display: block;
+  height: 70px;
+  width: 80px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: 0.6s ease;
+}
+/* Add a grey background color on mouse-over */
+
+/* Style the active link (or home/logo) */
+.active {
+  background-color: #878080;
+  color: black;
+  transition: 0.6s ease;
+}
+
+/*
+@keyframes{
+  0%   {background-color: #878080;}
+  25%  {background-color: #222;}
+  50%  {background-color: #878080;}
+  75%  {background-color: #222;}
+  100% {background-color: #878080;}
+
+  animation-name: example;
+  animation-duration: 4s; */
+
+.topnav a:hover{
+  transition: 0.6s ease;
+  background: #878080;
+}
+
+.icon:hover{
+  background: none;
+  background-color: none;
+}
+
+</style>  
+
+<!-- Button Widgets now -->
+<div class="widgets">
+  <meta id="view" name="viewport" content="width=device-width, initial-scale=1"/>
+  <div class="example-1">
+    <a href="/community"><button id="Widget1">xBear Studios Community</button></a>
+    <style type="text/css">
+      #Widget1{
+        border: 2px solid #fff;
+        width: 100%;
+        height: 550px;
+        background: #222;
+        color: #fff;
+        font-size: 60px;
+        transition: 0.6s ease;
+      }
+
+      #Widget1:hover{
+        background: #9d9e9d;
+        font-size: 90px;
+        transition: 0.6s ease;
+      }   
+    </style>
+    </div> 
+
+    <div class="example-2">
+    <button id="Widget2">Example 2</button>
+    <style type="text/css">
+      #Widget2{
+        float: right;
+        border: 2px solid #fff;
+        right: 65%;
+        color: #fff;
+        font-size: 50px;
+        width: 20%;
+        height: 300px;
+        background: #9d9e9d;
+        top: 80%;
+        transition: 0.6s ease;
+      }
+
+      #Widget2:hover{
+        background: #222;
+        font-size: 68px;
+        transition: 0.6s ease;
+      }   
+    </style> 
+    </div>
+
+    <div class="example-3">
+    <button id="Widget3">Example 3</button>
+    <style type="text/css">
+      #Widget3{
+        float: right;
+        border: 2px solid #fff;
+        right: 65%;
+        color: #fff;
+        font-size: 50px;
+        width: 20%;
+        height: 300px;
+        background: #9d9e9d;
+        top: 80%;
+        transition: 0.6s ease;
+      }
+
+      #Widget3:hover{
+        background: #222;
+        font-size: 68px;
+        transition: 0.6s ease;
+      }   
+      
+    </style> 
+    </div>
+
+    <div class="example-4">
+    <button id="Widget4">Example 4</button>
+    <style type="text/css">
+      #Widget4{
+        float: right;
+        border: 2px solid #fff;
+        right: 65%;
+        color: #fff;
+        font-size: 50px;
+        width: 20%;
+        height: 300px;
+        background: #9d9e9d;
+        top: 80%;
+      }
+      
+      #Widget4:hover{
+        background: #222;
+        font-size: 68px;
+        transition: 0.6s ease;
+      }   
+    </style> 
+    </div>
+
+    <div class="example-5">
+    <button id="Widget5">Example 5</button>
+    <style type="text/css">
+      #Widget5{
+        float: right;
+        border: 2px solid #fff;
+        right: 65%;
+        color: #fff;
+        font-size: 50px;
+        width: 20%;
+        height: 300px;
+        background: #9d9e9d;
+        top: 80%;
+      }
+      
+      #Widget5:hover{
+        background: #222;
+        font-size: 68px;
+        transition: 0.6s ease;
+      }   
+    </style> 
+    </div>
+
+    <div class="example-6">
+    <button id="Widget6">Example 6</button>
+    <style type="text/css">
+      #Widget6{
+        float: right;
+        border: 2px solid #fff;
+        right: 65%;
+        color: #fff;
+        font-size: 50px;
+        width: 20%;
+        height: 300px;
+        background: #9d9e9d;
+        top: 80%;
+      }    
+
+      #Widget6:hover{
+        background: #222;
+        font-size: 68px;
+        transition: 0.6s ease;
+      }     
+    </style> 
+    </div>
+    <hr>
+    </div>
+
+<!-- Footer -->
+<section class="footer">
+    <div class="links">
+
+        <h5 class="footertitle">Links: </h5>
+        <a class="tiktoc" href="">Join our TikTok!</a>
+        <a class="roblox" href="https://www.roblox.com/groups/3784511/xBEAR-Studios">Join our Roblox Group!</a>
+        <a class="twitter" href="https://twitter.com/xpolobear?lang=en">Join our Twitter!</a>
+        <a  class="youtube" href="https://www.youtube.com/channel/UCHfTSCvu5sUs3aNfUxa5clg">Join our YouTube!</a>
+        <a class="discord" href=" https://discord.gg/FZMsm4z">Join our Discord!</a>
+
+        <style type="text/css">
+
+          .footer{
+            padding: 10px;
+          }
+
+          .footertitle{
+            font-size: 33px;
+            color: #fff;
+            font-family: sans-serif;
+            text-decoration: underline;
+
+          }
+
+          .discord, .tiktoc, .roblox, .twitter, .youtube{
+            font-size: 30px;
+            color: #000;
+            transition: 0.6s ease;
+          }
+
+             .footer{
+              background: #222
+             }
+
+             .discord{
+              padding: 15px 35px;
+             }
+            .links a{
+              padding: 15px 35px;
+              color: #fff;
+              text-decoration: none;
+              display: block;
+              transition: 0.6s ease;
+              
+            }
+
+            .links a:hover{
+              background-color: #fff;
+              border: 1px solid #fff;
+              text-decoration: none;
+              color: #000;
+              transition: 0.6s ease;
+            } 
+        </style>
+
+    </div>
+</section>
+</div>
+
+</style>
+
+</body>
+ 
+</html>

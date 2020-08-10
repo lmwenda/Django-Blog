@@ -1,0 +1,131 @@
+{% block header %}
+<head>
+<div class="header">
+<title>{% block title %} xBEAR Community  {% endblock %}</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+</head>
+{% endblock %}
+
+{% block content %}
+<body>
+	<ul class="Nav-bar">
+		<p class="title"> Community Blogs </p>
+		<li><a href="/postform">Create Post</a></li>
+		<li><a href="/">Home</a></li>
+	</ul>
+
+  <div class="post">
+  {% for i in communityPost %}
+      <tr id="style_post">
+        <td class="user" onclick="profile_Warn">{{request.user}}</td>
+        <td>{{i.title}}</td>
+        <td>{{i.description}}</td>
+        <button class="btn btn-secondary"><a href="{% url 'update' communityPost.id %}">Update</a></button>
+        <button class="btn btn-danger"><a href="">Delete</a></button>
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+               
+      </tr>
+  {% endfor %}
+  </div>
+
+<script type="text/javascript">
+
+  // Accessing the Posts Id and users class
+  var posts = document.getElementById('style_post');
+  var users = document.querySelector('user');
+
+  // Styling the Posts
+  posts.style.display = 'block';
+  posts.style.textAlign = 'center';
+  users.style.cursor = 'pointer';
+
+</script>
+
+<style type="text/css">
+
+	*{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	box-sizing: border-box;
+  color: #000;
+
+}
+
+/* Posts Styling */
+.post{
+  display: block;
+  text-align: center;
+}
+
+.class user{
+  cursor: pointer;
+}
+
+/* Navigation Bar */
+
+body{
+	background: #fff;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  transition: 0.6s ease;
+}
+
+li {
+  float: right;
+  transition: 0.6s ease;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: 0.6s ease;
+}
+
+li a:hover {
+  background-color: #fff;
+  color: black;
+  font-size: 28px;
+  transition: 0.6s ease;
+}
+
+li a.active{
+  background-color: #fff;
+  color: black;
+  font-size: 28px;
+  transition: 0.6s ease;
+}
+
+.title{
+  float: left;
+  display: inline;
+  color: #fff;
+  font-size: 20px;
+}
+
+
+</style>
+
+
+{% endblock %}

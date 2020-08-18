@@ -48,11 +48,6 @@ def create(request):
 		if form.is_valid():
 			form.save()
 			user = form.cleaned_data('username')
-			send_mail('Contact Form',
-			 message, 
-			 settings.EMAIL_HOST_USER,
-			 ['xBear@gmail.com'], 
-			 fail_silently=False)
 			message.success(request, 'Your Account has Successfully been Created.')
 		return redirect('/signin')
 

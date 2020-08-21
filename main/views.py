@@ -130,6 +130,7 @@ def update(request, pk):
 	context = {'form':form}
 	return render(request, 'main/updatePost.html', context)
 
-def deletePost(request):
-	context = {'form':form}
-	return render(request, "main/delete.html", context)
+def delete_post(request,post_id=None):
+    post_to_delete=post.objects.get(id=post_id)
+    post_to_delete.delete()
+    return redirect('/community')

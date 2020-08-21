@@ -8,6 +8,7 @@ class post(models.Model):
 	"""
     Non-Admin's Posts here
 	"""
+	username = models.CharField(max_length=30)
 	title = models.CharField(max_length=50)
 	description = models.CharField(max_length=200)
 

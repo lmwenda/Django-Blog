@@ -19,34 +19,75 @@
 		<li><a href="/">Home</a></li>
 	</ul>
 
-  <div class="post">
+  <!-- <span class="post">
   {% for i in communityPost %}
       <tr id="style_post">
+        <hr />
         <td class="user" onclick="profile_Warn">{{request.user}}</td>
+        <hr />
         <td>{{i.title}}</td>
+        <hr />
         <td>{{i.description}}</td>
-        <button class="btn btn-secondary"><a href="{% url 'update' communityPost.id %}">Update</a></button>
-        <button class="btn btn-danger"><a href="">Delete</a></button>
-        </script>
-      </div>
-    </div>
-  </div>
-</div>
-               
+        <button class="btn btn-danger"><a  id="del" href="{% url 'delete' i.id %}">Delete</a></button>
       </tr>
   {% endfor %}
-  </div>
+  </span> -->
+
+<div class="post1">
+  {% for i in communityPost %}
+    <div class="jumbotron">
+      <h1 class="display-4">{{i.title}}</h1>
+      <p>Post from {{i.username}}</p>
+      <hr class="my-4">
+      <p class="lead">{{i.description}}</p>
+      <button class="btn btn-danger"><a  id="del" href="{% url 'delete' i.id %}">Delete</a></button>
+    </div>
+  {% endfor %}
+
+  <div class="game-links">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Bloody Ghoul Nights</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Top Tokyo Ghoul in Roblox!</h6>
+      <p class="card-text">You Should Check out one of the Best Tokyo Ghoul Games in Roblox! I bet you will be addicted for over 5hrs playing it...</p>
+      <a href="https://www.roblox.com/games/1611729379/Ghouls-Bloody-Nights-ALPHA" class="card-link">Join Game</a>
+      <a href="https://www.roblox.com/groups/3784511/xBEAR-Studios#!/about" class="card-link">Join Group</a>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="game-links">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title">Ro-Slayers</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Ro-Slayers is something Different....</h6>
+      <p class="card-text">Ro-Slayers is just different. It's just out of any other peoples leagues if they are trying to make a better Demon Slayer Game. Well Good Luck to them while we enjoy our selve's here. :)</p>
+      <a href="https://www.roblox.com/games/4072501860/CODE-Ro-Slayers-ALPHA" class="card-link">Join Game</a>
+      <a href="https://www.roblox.com/groups/3784511/xBEAR-Studios#!/about" class="card-link">Join Group</a>
+    </div>
+</div>
+</div>
+
+<!-- Styles and Scripts Below -->
+
+</div>
+</div>
+
+<style type="text/css">
+  .game-links{
+    float: right;
+    top: 100%;
+  }
+</style>
 
 <script type="text/javascript">
 
   // Accessing the Posts Id and users class
-  var posts = document.getElementById('style_post');
-  var users = document.querySelector('user');
+  var delete = document.getElementById('del')
 
   // Styling the Posts
-  posts.style.display = 'block';
-  posts.style.textAlign = 'center';
-  users.style.cursor = 'pointer';
+  delete.style.color = "#000";
 
 </script>
 
@@ -65,10 +106,33 @@
 .post{
   display: block;
   text-align: center;
+  border: 1px solid #000;
+}
+
+.post1{
+  float: center;
+  text-align: center;
+  width: 60%;
+  height: auto;
 }
 
 .class user{
   cursor: pointer;
+}
+
+.style_post{
+  float: center;
+  text-align: center;
+  display: block;
+  border: 1px solid #000;
+}
+
+#del{
+  color: #fff;
+}
+
+#del:hover{
+  text-decoration: none;
 }
 
 /* Navigation Bar */

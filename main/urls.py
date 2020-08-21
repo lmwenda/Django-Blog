@@ -12,6 +12,5 @@ path('logout/', views.logoutUser, name="logout"),
 path('community/', views.community, name="community"),
 path('aboutus/', views.aboutus, name="aboutus"),
 path('postform/',  views.postform, name="postform"),
-path('deletepost/', views.deletePost, name="deletePost"),
-path('update/<str:pk>/', views.update, name="update"),
+path('delete/<post_id>',views.delete_post,name='delete')
 ]

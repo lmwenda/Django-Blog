@@ -7,7 +7,10 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
 # DataBase Imports
-from .models import post
+from .models import Post
+
+# 404 import
+from django.shortcuts import get_object_or_404
 
 #View import
 from django.views.generic import ListView, CreateView
@@ -92,6 +95,7 @@ def contact(request):
 			subject = form.cleaned_data['subject']
 
 			recipients = ['xBear@example.com']
+			form.save()
 
 			send_mail(name, email, subject, 'Your form has been recorded. Thanks!', recipients)
 			return redirect('/')
@@ -102,8 +106,8 @@ def contact(request):
 
 @login_required(login_url="signin")
 def community(request):
-	communityPost = post.objects.all()
-	return render(request, "main/community.html", {'communityPost':communityPost})
+    community_posts = Post.objects.all()
+    return render(request, "main/community.html", {'community_posts': community_posts})
 
 def aboutus(request):
 	"""
@@ -118,19 +122,13 @@ def postform(request):
 	if request.method == 'POST':
 		form = CreatePost(request.POST)
 		if form.is_valid():
-			form.save()
-			return redirect('/community')
+		    form.save()
+		return redirect('/community')
 
 	context = {'form':form}
 	return render(request, "main/createpost.html", context)
 
-def update(request, pk):
-	order = communityPost.objects.get(id=pk)
-	form = CreatePost(instance=order)
-	context = {'form':form}
-	return render(request, 'main/updatePost.html', context)
-
 def delete_post(request,post_id=None):
-    post_to_delete=post.objects.get(id=post_id)
+    post_to_delete=get_object_or_404(Post, post_id=id)
     post_to_delete.delete()
     return redirect('/community')

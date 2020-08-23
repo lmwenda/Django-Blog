@@ -1,21 +1,19 @@
 from django.db import models
 from django.utils import timezone
+from django.conf import settings
 from django.contrib.auth.models import User
 
 # Create your models here.
 
-class post(models.Model):
-	"""
-    Non-Admin's Posts here
-	"""
-	username = models.CharField(max_length=30)
-	title = models.CharField(max_length=50)
-	description = models.CharField(max_length=200)
+class Post(models.Model):
+	author = models.ForeignKey(User, on_delete=models.CASCADE, blank=False)
+	title = models.CharField(max_length=40)
+	description = models.CharField(max_length=400)
 
 	def __str__(self):
 		return self.title
 
-class Admins_Post(models.Model):
+class AdminsPost(models.Model):
 	"""
 	Admin's Posts here
 	"""

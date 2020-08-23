@@ -1,6 +1,17 @@
 {% block header %}
 <head>
 <div class="header">
+
+  <!-- Responsive Design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style type="text/css">
+    @-ms-viewport{
+      height: device-height;
+      width: device-width;
+    }
+  </style>
+
 <title>{% block title %} xBEAR Community  {% endblock %}</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -33,14 +44,23 @@
   {% endfor %}
   </span> -->
 
-<div class="post1">
-  {% for i in communityPost %}
-    <div class="jumbotron">
-      <h1 class="display-4">{{i.title}}</h1>
-      <p>Post from {{i.username}}</p>
+<div class="stock">
+<div class="jumbotron">
+      <h1 class="display-4">Welcome to xBEAR's Community Blog!</h1>
+      <p>Post from user</p>
       <hr class="my-4">
-      <p class="lead">{{i.description}}</p>
-      <button class="btn btn-danger"><a  id="del" href="{% url 'delete' i.id %}">Delete</a></button>
+      <p class="lead">In this blog you able to view peoples Blogs, listen to their stories and much more! The Vlogs right now are not very interacting but they will be in the Future Updates Thanks for joining us!</p>
+</div>
+</div>
+
+<div class="post1">
+  {% for post in community_posts %}
+    <div class="jumbotron">
+      <h1 class="display-4">{{post.title}}</h1>
+      <p>Post from {{post.author}}</p>
+      <hr class="my-4">
+      <p class="lead">{{post.description}}</p>
+      <button class="btn btn-danger"><a  id="del" href="{% url 'delete' post.id %}">Delete</a></button>
     </div>
   {% endfor %}
 
@@ -112,7 +132,19 @@
 .post1{
   float: center;
   text-align: center;
+  height: auto;
   width: 60%;
+}
+
+@media stock and (max-width: device-width) {
+  body {
+     width: 60%;
+  }
+}
+
+.stock{
+  float: center;
+  text-align: center;
   height: auto;
 }
 
@@ -163,21 +195,21 @@ li a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 2vw;
   transition: 0.6s ease;
 }
 
 li a:hover {
   background-color: #fff;
   color: black;
-  font-size: 28px;
+  font-size: 3vw;
   transition: 0.6s ease;
 }
 
 li a.active{
   background-color: #fff;
   color: black;
-  font-size: 28px;
+  font-size: 1vw;
   transition: 0.6s ease;
 }
 
@@ -185,7 +217,7 @@ li a.active{
   float: left;
   display: inline;
   color: #fff;
-  font-size: 20px;
+  font-size: 3vw;
 }
 
 

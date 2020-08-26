@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
 # DataBase Imports
-from .models import Post
+from .models import Post, AdminsPost
 
 # 404 import
 from django.shortcuts import get_object_or_404
@@ -37,12 +37,6 @@ def email(request):
 
 	if request.method == 'POST':
 		message = request.POST['message']
-
-		send_mail('Contact Form',
-		 message, 
-		 settings.EMAIL_HOST_USER,
-		 ['xBear@gmail.com'], 
-		 fail_silently=False)
 	return render(request, 'main/email.html')
 
 def create(request):
@@ -50,12 +44,6 @@ def create(request):
 		form = CreateUserForm(request.POST)
 		if form.is_valid():
 			form.save()
-			user = form.cleaned_data('username')
-			send_mail('Contact Form',
-			 message, 
-			 settings.EMAIL_HOST_USER,
-			 ['xBear@gmail.com'], 
-			 fail_silently=False)
 			message.success(request, 'Your Account has Successfully been Created.')
 		return redirect('/signin')
 
@@ -109,11 +97,9 @@ def community(request):
     community_posts = Post.objects.all()
     return render(request, "main/community.html", {'community_posts': community_posts})
 
-def aboutus(request):
-	"""
-	Gonna Update this to a FAQ later
-	"""
-	return render(request, "main/aboutus.html")
+def AdminsBlog(request):
+	admin_posts = AdminsPost.objects.all()
+	return render(request, "main/adminblog.html", {'admin_posts':admin_posts})
 
 @login_required(login_url="signin")
 def postform(request):
@@ -122,13 +108,20 @@ def postform(request):
 	if request.method == 'POST':
 		form = CreatePost(request.POST)
 		if form.is_valid():
-		    form.save()
-		return redirect('/community')
+			instance = form.save(commit=False)
+			instance.author = request.user
+			instance.save()
+			return redirect('/community')
 
 	context = {'form':form}
 	return render(request, "main/createpost.html", context)
 
-def delete_post(request,post_id=None):
-    post_to_delete=get_object_or_404(Post, post_id=id)
-    post_to_delete.delete()
-    return redirect('/community')
+def delete_post(request, post_id):
+	community_posts = Post.objects.get(id=post_id)
+	if request.method == "POST":
+		if community_posts.author == request.user:
+			community_posts.delete()
+			return redirect('/community')
+
+	context = {'post': community_posts}
+	return render(request, "main/delete.html", context)

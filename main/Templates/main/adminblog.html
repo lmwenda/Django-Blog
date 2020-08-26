@@ -1,7 +1,4 @@
 {% block header %}
-<head>
-<div class="header">
-
   <!-- Responsive Design -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,23 +9,33 @@
     }
   </style>
 
-<title>{% block title %} xBEAR Community  {% endblock %}</title>
+<title>{% block title %} xBEAR Admin Blogs  {% endblock %}</title>
+
+{% endblock %}
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
+<meta http-equiv="X-UA-Compatible" content="IE-9"/>
+
 </head>
-{% endblock %}
 
 {% block content %}
 <body>
-	<ul class="Nav-bar">
-		<p class="title"> Community Blogs </p>
-		<li><a href="/postform">Create Post</a></li>
-		<li><a href="/">Home</a></li>
-	</ul>
+  <ul class="Nav-bar">
+    <p class="title"> Community Blogs </p>
+    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+    <li class="nav-item"><a class="nav-link disabled" id="color" href="#" tabindex="-1" aria-disabled="true">Hello {{request.user}}</a>
+      </li>
+  </ul>
+
+<style type="text/css">
+#color{
+  color: #fff;
+}  
+</style>
 
   <!-- <span class="post">
   {% for i in communityPost %}
@@ -44,82 +51,24 @@
   {% endfor %}
   </span> -->
 
-<div class="stock">
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-      <h1 class="display-4">Welcome to xBEAR's Community Blog!</h1>
-      <p>Post from Administrator</p>
-      <p class="lead">In this blog you able to view peoples Blogs, listen to their stories and much more! The Vlogs right now are not very interacting but they will be in the Future Updates Thanks for joining us!</p>
-  </div> 
-</div>
-</div>
-
 <div class="post1">
-  {% for post in community_posts %}
+  {% for post in admin_posts %}
     <div class="jumbotron">
       <h1 class="display-4">{{post.title}}</h1>
-      <p>Post from {{post.author}}</p>
       <hr class="my-4">
-      <p class="lead">{{post.description}}</p>
-      <button class="btn btn-danger"><a  id="del" href="{% url 'delete' post.id %}">Delete</a></button>
+      <p class="lead">{{post.admins_info}}</p>
     </div>
   {% endfor %}
-</div>
-
-  <div class="game-links">
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Bloody Ghoul Nights</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Top Tokyo Ghoul in Roblox!</h6>
-      <p class="card-text">You Should Check out one of the Best Tokyo Ghoul Games in Roblox! I bet you will be addicted for over 5hrs playing it...</p>
-      <a href="https://www.roblox.com/games/1611729379/Ghouls-Bloody-Nights-ALPHA" class="card-link">Join Game</a>
-      <a href="https://www.roblox.com/groups/3784511/xBEAR-Studios#!/about" class="card-link">Join Group</a>
-    </div>
-</div>
-</div>
-</div>
-
-<div class="game-links">
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Ro-Slayers</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Ro-Slayers is something Different....</h6>
-      <p class="card-text">Ro-Slayers is just different. It's just out of any other peoples leagues if they are trying to make a better Demon Slayer Game. Well Good Luck to them while we enjoy our selve's here. :)</p>
-      <a href="https://www.roblox.com/games/4072501860/CODE-Ro-Slayers-ALPHA" class="card-link">Join Game</a>
-      <a href="https://www.roblox.com/groups/3784511/xBEAR-Studios#!/about" class="card-link">Join Group</a>
-    </div>
-</div>
-</div>
 
 <!-- Styles and Scripts Below -->
 
-</div>
-</div>
-
-<style type="text/css">
-  .game-links{
-    float: right;
-    top: 100%;
-  }
-</style>
-
-<script type="text/javascript">
-
-  // Accessing the Posts Id and users class
-  var delete = document.getElementById('del')
-
-  // Styling the Posts
-  delete.style.color = "#000";
-
-</script>
-
 <style type="text/css">
 
-	*{
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
-	box-sizing: border-box;
+  *{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  box-sizing: border-box;
   color: #000;
 
 }
@@ -172,9 +121,9 @@
 /* Navigation Bar */
 
 body{
-	background: #fff;
-	overflow: scroll;
-	overflow-x: hidden;
+  background: #fff;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 ul {
@@ -186,12 +135,38 @@ ul {
   transition: 0.6s ease;
 }
 
+.nav-item{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  transition: 0.6s ease;
+  color: #fff;
+}
+
 li {
   float: right;
   transition: 0.6s ease;
 }
 
+.nav-item{
+  float: right;
+  color: #fff;
+  transition: 0.6s ease;
+}
+
 li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 2vw;
+  transition: 0.6s ease;
+}
+
+.nav-item{
   display: block;
   color: white;
   text-align: center;

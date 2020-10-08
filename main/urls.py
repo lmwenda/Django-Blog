@@ -15,6 +15,9 @@ path('adminblog/', views.AdminsBlog, name="adminblog"),
 path('postform/',  views.postform, name="postform"),
 path('delete/str:<post_id>/',views.delete_post,name='delete'),
 
+# Comments
+path('createcomment/', views.comments, name="createcomment"),
+
 # Reset Password Views
 path('password_reset/', auth_views.PasswordResetView.as_view(), name="password_reset"),
 path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),

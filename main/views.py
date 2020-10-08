@@ -19,7 +19,7 @@ from django.views.generic import ListView, CreateView
 from django.contrib.auth import authenticate, login, logout
 
 # Form imports
-from .forms import CreateUserForm, LoginUserForm, ContactForm, CreatePost
+from .forms import CreateUserForm, LoginUserForm, ContactForm, CreatePost, PostComment
 
 # Decorators imports e.g Login Required
 from django.contrib.auth.decorators import login_required
@@ -125,3 +125,17 @@ def delete_post(request, post_id):
 
 	context = {'post': community_posts}
 	return render(request, "main/delete.html", context)
+
+# Comments
+def comments(request):
+	form = PostComment()
+
+	if request.method == "POST":
+		form = PostComment(request.POST)
+		if form.is_valid():
+			instance = form.save(commit=False)
+			instance.author = request.user
+			instance.save()
+			return redirect('/community')
+	context = {'form':form}
+	return render(request, "main/createComment.html", context)

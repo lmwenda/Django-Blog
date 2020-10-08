@@ -56,11 +56,36 @@
 
 <div class="post1">
   {% for post in community_posts %}
+    <!-- Blog -->
     <div class="jumbotron">
       <h1 class="display-4">{{post.title}}</h1>
       <p>Post from {{post.author}}</p>
+      <p>{{post.blog_date}}</p>
       <hr class="my-4">
       <p class="lead">{{post.description}}</p>
+
+      <!-- Blog Comments -->
+
+      <hr class="my_4">
+      {% if not post.comments.all %}
+      <h2>Comments</h2>
+
+      <h3>No Comments yet.</h3>
+      <hr class="my_4">
+
+      <button class="btn btn-secondary"><a  id="del" href="/createcomment">Add Comments</a></button>
+
+      {% else %}
+      {% for v in post.comments.all %}
+        <h2>Comments</h2>
+        <p>{{v.host}}</p>
+        <p>{{v.current_date}}</p>
+        <p>{{v.body}}</p>
+        <hr>
+        <button class="btn btn-secondary"><a  id="del" href="/createcomment">Add Comments</a></button>
+      {% endfor %}
+      {% endif %}
+
       <button class="btn btn-danger"><a  id="del" href="{% url 'delete' post.id %}">Delete</a></button>
     </div>
   {% endfor %}

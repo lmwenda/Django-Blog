@@ -55,6 +55,7 @@
   {% for post in admin_posts %}
     <div class="jumbotron">
       <h1 class="display-4">{{post.title}}</h1>
+      <p>{{post.date_posted}}</p>
       <hr class="my-4">
       <p class="lead">{{post.admins_info}}</p>
     </div>

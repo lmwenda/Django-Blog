@@ -1,2 +1,2 @@
-# xBEAR Blogs
+# Django Blog
  
